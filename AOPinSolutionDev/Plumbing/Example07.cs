@@ -1,12 +1,9 @@
 ﻿#region Namespace Imports
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AOPinSolutionDev.Aspects;
+using System;
+
 
 #endregion Namespace Imports
 
@@ -32,7 +29,7 @@ namespace AOPinSolutionDev.Plumbing
         #region "Business Logic" Methods
 
 
-        [RetryHandlingAspect(AspectPriority = 2), ExceptionHandlingAspect(AspectPriority = 1), TimingAspect(AspectPriority = 1), LoggingToTextboxAspect(AspectPriority = 1)]
+        [RetryHandlingAspect(AspectPriority = 4), ExceptionHandlingAspect(AspectPriority = 1), TimingAspect(AspectPriority = 2), LoggingToTextboxAspect(AspectPriority = 3)]
         private String GetJoke()
         {
             return IcndbMethods.FetchChuckNorrisJoke();

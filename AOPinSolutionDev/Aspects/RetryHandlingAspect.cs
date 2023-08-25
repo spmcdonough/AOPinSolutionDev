@@ -2,10 +2,10 @@
 
 
 using AOPinSolutionDev.Plumbing;
-using System;
-using System.Threading;
 using PostSharp.Aspects;
 using PostSharp.Serialization;
+using System;
+using System.Threading;
 
 
 #endregion Namespace Imports
