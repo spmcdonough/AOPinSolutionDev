@@ -1,11 +1,9 @@
 ﻿#region Namespace Imports
 
-
+using System.Reflection.Metadata.Ecma335;
 using MetalamaBaby.Forms;
-using MetalamaBaby.Plumbing;
 using Metalama.Framework.Aspects;
-using System;
-using System.Runtime.CompilerServices;
+
 
 #endregion Namespace Imports
 
@@ -19,53 +17,41 @@ namespace MetalamaBaby.Aspects
     /// The end result is roughly the same, but it's the implementation details that
     /// are the most interesting.
     /// </summary>
-    internal class LoggingToStatusTextBoxAttribute: OverrideMethodAspect
+    public class LoggingToStatusTextBoxAttribute : OverrideMethodAspect
     {
 
 
         /// <summary>
-        /// Like the OnMethodBoundaryAspect of PostSharp, Metalama's OverrideMethod()
+        /// Like the OnMethodInterceptionAspect of PostSharp, Metalama's OverrideMethod()
         /// is where our aspect gets implemented. We still attach the aspect to a method
         /// with an attribute at the method, class, or assembly level. Everything else is
         /// different and cool to see in action.
         /// </summary>
         public override dynamic? OverrideMethod()
         {
-            Int32 depth = 2;
-            StatusBoxSupport statusBoxRef = MainForm.StatusBoxSupportRef;
-            statusBoxRef.WriteToStatusBox($"Entering {meta.Target.Method} method.");
-            if (meta.Target.Method.ToString().Contains("TopLevel"))
-            {
-                depth = 0;
-            }
-            else if (meta.Target.Method.ToString().Contains("MidLevel"))
-            {
-                depth = 1;
-            }
-            else if (meta.Target.Method.ToString().Contains("LowLevel"))
-            {
-                depth = 2;
-            }
-            else if (meta.Target.Method.ToString().Contains(".ctor"))
-            {
-                depth = -1;
-            }
-            try
-            {
-                var result = meta.Proceed();
-                if (depth > -1)
+            MainForm mainFormRef = Form.ActiveForm as MainForm;
+            if (null != mainFormRef) {
+                Int32 depth = 2;
+                String messageToReturn = $"Aspect reports: entering {meta.Target.Method} method.";
+                if (meta.Target.Method.ToString().Contains("TopLevel"))
                 {
-                    statusBoxRef.WriteToStatusBox($"The call to {meta.Target.Method} succeeded without issue.", depth + 1);
+                    depth = 1;
+                }
+                mainFormRef.WriteToStatusBox(String.Empty, depth);
+                mainFormRef.WriteToStatusBox(messageToReturn, depth);
+                try
+                {
+                    var result = meta.Proceed();
+                    mainFormRef.WriteToStatusBox($"Aspect reports: the call to {meta.Target.Method} succeeded without issue.", depth);
+                }
+                catch (Exception ex)
+                {
+                        mainFormRef.WriteToStatusBox($"Aspect reports: the call to {meta.Target.Method} resulted in an exception: " + ex.Message, depth);
+                        // Logic to handle the exception would go here.
+                        meta.Return();
                 }
             }
-            catch
-            {
-                if (depth > -1)
-                {
-                    statusBoxRef.WriteToStatusBox($"The call to {meta.Target.Method} resulted in an exception.", depth + 1);
-                }
-                throw;
-            }
+            return null;
         }
     }
 }
