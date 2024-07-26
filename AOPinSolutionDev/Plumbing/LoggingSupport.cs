@@ -12,12 +12,12 @@ using System.Windows.Forms;
 namespace AOPinSolutionDev.Plumbing
 {
 
-    
+
     /// <summary>
     /// This class takes care of writing messages to a "log" - which, in the
-    /// case of this sample project, is just an ASP.NET Textbox. In a normal
+    /// case of this sample project, is just a Textbox. In a normal
     /// production application, this class would likely be more complex and
-    /// include support for the SharePoint ULS log, Windows Event Log, etc.
+    /// include support for the standard logs, Windows Event Log, etc.
     /// </summary>
     public static class LoggingSupport
     {
@@ -68,7 +68,7 @@ namespace AOPinSolutionDev.Plumbing
 
 
         /// <summary>
-        /// Maintains a reference to the web part's Textbox so log entries can be
+        /// Maintains a reference to the form's Textbox so log entries can be
         /// written to it.
         /// </summary>
         internal static TextBox LoggingTextBox { get; set; }

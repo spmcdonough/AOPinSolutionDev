@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPinSolutionDev", "AOPinSolutionDev\AOPinSolutionDev.csproj", "{5D66AE43-67AF-4C14-8603-0A21545238BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalamaBaby", "MetalamaBaby\MetalamaBaby.csproj", "{75D77A4F-3BCE-4960-8E20-27123BC77A55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5D66AE43-67AF-4C14-8603-0A21545238BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D66AE43-67AF-4C14-8603-0A21545238BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D66AE43-67AF-4C14-8603-0A21545238BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D77A4F-3BCE-4960-8E20-27123BC77A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D77A4F-3BCE-4960-8E20-27123BC77A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D77A4F-3BCE-4960-8E20-27123BC77A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D77A4F-3BCE-4960-8E20-27123BC77A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
